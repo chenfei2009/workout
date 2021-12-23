@@ -1,29 +1,55 @@
 # workout
-用于记录和展示个人健身数据的移动端应用
-需要配合后端接口使用，链接：https://github.com/chenfei2009/workout_api_server
+## 项目介绍
 
-## Project setup
+用于记录和展示个人健身数据的移动端应用。
+
+所有内容由个人完成，仅供学习交流。
+
+#### 主要功能：
+
+- 健身记录管理
+  - 记录每组健身数据（根据动作类型区分模板）
+  - 历史数据提示
+  - 查看、编辑历史数据
+- 动作库管理
+  - 自定义动作等
+- 训练计划管理
+  - 自定义训练计划
+  - 历史记录导入训练计划
+  - 按计划进行训练
+- 训练数据统计
+  - 日历展示（部位数据等）
+  - 统计数据（部位、容量、动作频次等）
+
+#### 技术栈：
+
+- 客户端：vue
+- 服务端：nodejs + express
+- 数据库：sql
+
+需要配合后端接口使用
+
+链接：https://github.com/chenfei2009/workout_api_server
+
+
+
+## 安装
+
+#### 安装依赖
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+#### 启动项目
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+#### 项目打包
+
 ```
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-=======
-a web app for workout records
->>>>>>> 707b81ab066200edc5dbfbec88c70e706d8892aa
