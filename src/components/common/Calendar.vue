@@ -21,14 +21,14 @@
           @click="dateItemClick(item.date)">
           <span>{{item.date.getDate()}}</span>
           <!-- <div>{{MonthDataItem(item.date)}}</div> -->
-          <ul>
+          <ul v-if="monthData.volumes">
             <li v-for="(part, index) in monthDataItem(item.date)"
               :key="index"
               class="month-data-item"
               :style="monthDataItemStyle(part)"
               >{{part}}</li>
           </ul>
-          <slot></slot>
+          <!-- <slot></slot> -->
         </li>
       </ul>
     </div>
@@ -56,7 +56,7 @@ export default {
   },
   props: {
     monthData: {
-      type: Array
+      type: Object
     }
   },
   computed: {
@@ -75,11 +75,14 @@ export default {
       return function (date) {
         const dateStr = formatDate(date, 'yyyy-MM-dd')
         const partDataItem = []
-        this.monthData.forEach(v => {
-          // console.log(v.date, dateStr)
-          // return 123
-          if (v.date === dateStr) partDataItem.push(v.part)
-        })
+        if (this.monthData.volumes.length !== 0) {
+          this.monthData.volumes.forEach(v => {
+            if (v.date === dateStr) partDataItem.push(v.volume)
+          })
+          this.monthData.parts.forEach(v => {
+            if (v.date === dateStr) partDataItem.push(v.part)
+          })
+        }
         return partDataItem
       }
     },
@@ -88,23 +91,25 @@ export default {
       return function (partItem) {
         switch (partItem) {
           case '胸部':
-            return { backgroundColor: '#6b9d46' }
+            return { backgroundColor: '#ddb78a' }
           case '背部':
-            return { backgroundColor: '#f94143' }
+            return { backgroundColor: '#5d7482' }
           case '臀腿':
-            return { backgroundColor: '#216b8b' }
+            return { backgroundColor: '#80696f' }
           case '二头':
-            return { backgroundColor: '#f9c650' }
+            return { backgroundColor: '#7aa5ac' }
           case '三头':
-            return { backgroundColor: '#f9961e' }
+            return { backgroundColor: '#c49d8c' }
           case '肩部':
-            return { backgroundColor: '#e46ba4' }
+            return { backgroundColor: '#1195a0' }
           case '核心':
-            return { backgroundColor: '#53ba9c' }
+            return { backgroundColor: '#b28e80' }
           case '有氧':
-            return { backgroundColor: '#53ba9c' }
-          default:
-            break
+            return { backgroundColor: '#958ead' }
+          default: {
+            return { backgroundColor: '#5b5d69' }
+          }
+            // break
         }
       }
     }
@@ -213,11 +218,13 @@ export default {
     flex-wrap: wrap;
     .date-item {
       width: 14.2857vw;
-      padding: 10px 0;
+      padding: 10px 1px;
       /* 部位数据 */
       .month-data-item {
+        margin: 2px 0;
+        border-radius: 2px;
         color: #fff;
-        font-size: 14px
+        font-size: 12px
       }
     }
     .not-current-month {
