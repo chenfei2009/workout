@@ -7,7 +7,7 @@
     <div class="main">
       <!-- 日历组件 -->
       <Calendar ref="calendarRef"
-        :monthData=partData
+        :monthData=caleData
         @dateItemClick="dateItemClick"
         @dateChange="handleDateChange">
       </Calendar>
@@ -30,7 +30,7 @@ export default {
   },
   data () {
     return {
-      partData: [] // 训练记录数据 包括 date part
+      caleData: {} // 训练记录数据 包括 date part
     }
   },
   mounted () {
@@ -57,7 +57,7 @@ export default {
       startDate = formatDate(startDate, 'yyyy-MM-dd')
       endDate = formatDate(endDate, 'yyyy-MM-dd')
       const { data: res } = await getPartListByDate(startDate, endDate)
-      this.partData = res.data
+      this.caleData = res.data
     },
 
     // 事件监听相关方法
